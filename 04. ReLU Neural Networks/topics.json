@@ -1,0 +1,109 @@
+{
+  "topics": [
+    {
+      "topic": "ReLU Neural Networks",
+      "sub_topics": [
+        "The ReLU (Rectified Linear Unit) activation function, defined as \u03c3ReLU(x) = max(0, x), is widely used in neural networks due to its simplicity and ability to mitigate vanishing and exploding gradients. ReLU neural networks leverage the properties of continuous piecewise linear functions, where any such function can be exactly represented by a ReLU neural network. The analysis of ReLU networks differs from smoother activation functions because derivative approximation techniques are not applicable to the piecewise linear ReLU.",
+        "Manipulating ReLU neural networks involves operations like reproducing the identity function, composition, parallelization, and linear combinations. Reproducing the identity, where the network generates its input, is crucial for extending networks to deeper architectures. Composition combines networks, where the output of one serves as input for another, efficiently leading to networks with a controlled number of weights. Parallelization executes multiple networks in parallel, mapping multiple inputs to multiple outputs. Linear combinations sum networks, weighted by scalars, creating new functions while maintaining approximation properties.",
+        "A framework is adopted to track the number of network parameters for basic manipulations such as adding up or composing two neural networks, allowing us to bound the network complexity when constructing more elaborate networks from simpler ones. The section formalizes how to combine and manipulate ReLU neural networks, refining previous results by adding bounds on the number of weights that the resulting networks have, with four operations forming the basis of all constructions: reproducing an identity, composition, parallelization, and linear combinations."
+      ]
+    },
+    {
+      "topic": "Continuous Piecewise Linear Functions",
+      "sub_topics": [
+        "A continuous piecewise linear (CPWL) function is a function f: \u03a9 \u2192 R, where \u03a9 \u2286 Rd, that is continuous and consists of 'n' affine functions gj: Rd \u2192 R, such that for each x \u2208 \u03a9, there exists at least one j \u2208 {1, ..., n} for which f(x) = gj(x). ReLU functions are CPWLs with two regions. CPWL functions can be expressed as the finite maximum of a finite minimum of certain affine functions. This representation is fundamental for proving that CPWL functions can be realized by ReLU neural networks.",
+        "ReLU neural networks can represent any CPWL function, and conversely, any CPWL function can be realized by a ReLU neural network, establishing an equivalence between these two classes of functions.  The mapping x \u2192 \u03c3ReLU(wTx + b), which is a ReLU neural network with a single neuron, is cpwl (with two regions), and every ReLU neural network is a repeated composition of linear combinations of cpwl functions.",
+        "Basic operations with ReLU networks, such as taking the minimum or maximum of two inputs, can be constructed using a small number of ReLU activation functions, which serves as a building block for more complex CPWL functions. The operations of minimum and maximum can be expressed by ReLU neural networks. For every x, y \u2208 R, min{x, y} = ReLU(y) - ReLU(-y) - ReLU(y - x) and max{x, y} = ReLU(y) - ReLU(-y) + ReLU(x - y), where ReLU(x) = max{0, x}."
+      ]
+    },
+    {
+      "topic": "Deep ReLU Neural Networks",
+      "sub_topics": [
+        "Deep ReLU networks are necessary for approximating smooth functions with high accuracy, addressing limitations of shallow networks through their ability to efficiently represent polynomials. This chapter is primarily based on the seminal 2017 paper by Dmitry Yarotsky, and the present chapter is primarily based on this paper. To approximate smooth functions efficiently, one of the main tools in Chapter 4 was to rebuild polynomial-based functions, such as higher-order B-splines.",
+        "The square function x \u2192 x^2 can be approximated very efficiently by a deep neural network, and a piecewise linear function s_n(x) is defined with break points x_{n,j} = j2^{-n}. Efficient approximation of multiplication enables efficient approximation of polynomials, and this relies on the polarization identity to express the product of two numbers as a sum of squares.",
+        "By leveraging efficient approximations of the square function and multiplication, deep ReLU networks can approximate functions with H\u00f6lder continuous derivatives, achieving convergence rates that improve with network depth. The depth of ReLU networks must increase to achieve higher accuracy in approximating smooth functions, balancing the trade-off between network size and approximation error."
+      ]
+    },
+    {
+      "topic": "Basic ReLU Calculus",
+      "sub_topics": [
+        "The section formalizes how to combine and manipulate ReLU neural networks, refining previous results by adding bounds on the number of weights that the resulting neural networks have, with four operations forming the basis of all constructions: reproducing an identity, composition, parallelization, and linear combinations.",
+        "Reproducing an identity: For ReLUs, we can reproduce the identity exactly, which will play a crucial role in order to extend certain neural networks to deeper neural networks, and to facilitate an efficient composition operation.",
+        "Composition: For ReLU activation functions, this composition can be done in a very efficient way leading to a neural network that has up to a constant not more than the number of weights of the two initial neural networks.",
+        "Parallelization: We will refine this notion and make precise the size of the resulting neural networks.",
+        "Linear combinations: Similarly, for the sum of two neural networks, we will give precise bounds on the size of the resulting neural network."
+      ]
+    },
+    {
+      "topic": "Network Manipulation",
+      "sub_topics": [
+        "The chapter discusses potential shortcomings of shallow ReLU networks compared to deep ReLU networks, analyzing the number of linear regions these functions can generate.",
+        "The section formalizes how to combine and manipulate ReLU neural networks, refining previous results by adding bounds on the number of weights that the resulting neural networks have, with four operations forming the basis of all constructions: reproducing an identity, composition, parallelization, and linear combinations."
+      ]
+    },
+    {
+      "topic": "Identity Function in ReLU Networks",
+      "sub_topics": [
+        "Expressing the identity on Rd as a ReLU neural network of depth L\u2208N, ensuring that the network exactly reproduces the input for all x \u2208 Rd. The ReLU neural network \u03a6idL,d satisfies \u03a6idL,d(x) = x for all x \u2208 Rd, with depth(\u03a6idL,d) = L, width(\u03a6idL,d) = 2d, and size(\u03a6idL,d) = 2d \u22c5 (L + 1).",
+        "The property to exactly represent the identity is not shared by sigmoidal activation functions, but it does hold for polynomial activation functions. Reproducing an identity: For ReLUs, we can reproduce the identity exactly, which will play a crucial role in order to extend certain neural networks to deeper neural networks, and to facilitate an efficient composition operation."
+      ]
+    },
+    {
+      "topic": "Composition of Neural Networks",
+      "sub_topics": [
+        "Concatenating two neural networks \u03a61, \u03a62 with architectures (\u03c3ReLU; d0, ..., dL1+1) and (\u03c3ReLU; d0, ..., dL2+1) respectively, assuming that the output dimension dL1+1 of \u03a61 equals the input dimension d0 of \u03a62.",
+        "Defining two types of concatenations: First \u03a62 \u25e6 \u03a61 is the neural network with weights and biases given by (W(0)1, b(0)1), ..., (W(L1\u22121)1, b(L1\u22121)1), (W(0)2W(L1)1, W(0)2b(L1)1 + b(0)2), (W(1)2, b(1)2), ..., (W(L2)2, b(L2)2).",
+        "Second, \u03a62 \u2022 \u03a61 is the neural network defined as \u03a62 \u25e6 \u03a6id \u25e6 \u03a61. In terms of weighs and biases, \u03a62 \u2022 \u03a61 is given as (W(0)1, b(0)1), ..., (W(L1\u22121)1, b(L1\u22121)1), ((W(L1)1, \u2212W(L1)1), b(L1)1 \u2212 b(L1)1), (W(0)2, b(0)2), ..., (W(L2)2, b(L2)2).",
+        "Proving that \u03a62 \u25e6 \u03a61(x) = \u03a62 \u2022 \u03a61(x) = \u03a62(\u03a61(x)) for all x \u2208 Rd, and establishing bounds for the width, depth, and size of the composed networks. Composition: For ReLU activation functions, this composition can be done in a very efficient way leading to a neural network that has up to a constant not more than the number of weights of the two initial neural networks."
+      ]
+    },
+    {
+      "topic": "Parallelization of Neural Networks",
+      "sub_topics": [
+        "Constructing a neural network (\u03a61, ..., \u03a6m) that processes m neural networks (\u03a6i)mi=1 in parallel, with architectures (\u03c3ReLU; d0, ..., dLi+1) respectively.",
+        "Defining (\u03a61, ..., \u03a6m): R\u2211mi=1 di \u2192 R\u2211mi=1 dLi+1 such that (x1, ..., xm) \u2192 (\u03a61(x1), ..., \u03a6m(xm)).",
+        "Establishing bounds for the width, depth, and size of the parallelized network, with Lmax := maxj\u2264m Lj.",
+        "Using parallelization with shared inputs to realize the function x \u2192 (\u03a61(x), ..., \u03a6m(x)) from Rdo \u2192 RdL1+1+...+dLm+1. Parallelization: We will refine this notion and make precise the size of the resulting neural networks."
+      ]
+    },
+    {
+      "topic": "Linear Combinations of Neural Networks",
+      "sub_topics": [
+        "Constructing a ReLU neural network \u2211mj=1 \u03b1j\u03a6j that realizes the function [Formula] for scalars \u03b1j \u2208 R, where (\u03a6j)mj=1 are ReLU neural networks with architectures (\u03c3ReLU; d0, ..., dLj+1).",
+        "This corresponds to the parallelization (\u03a61, ..., \u03a6m) composed with the linear transformation (z1, ..., zm) \u2192 \u2211mj=1 \u03b1jzj.",
+        "Establishing bounds for the width, depth, and size of the linear combination network, with Lmax := maxj\u2264m Lj.",
+        "Considering linear combinations with shared inputs, i.e., a neural network realizing x \u2192 \u2211mj=1 \u03b1j\u03a6j(x) for x \u2208 Rdo. Linear combinations: Similarly, for the sum of two neural networks, we will give precise bounds on the size of the resulting neural network."
+      ]
+    },
+    {
+      "topic": "Simplicial Pieces in ReLU Networks",
+      "sub_topics": [
+        "Considering the case where the regions on which f is affine are simplices, constructing neural networks that scale merely linearly in the number of such regions, which is a serious improvement from the exponential dependence of the size on the number of regions that was found previously.",
+        "Partitioning \u03a9 \u2286 Rd into simplices, termed a triangulation of \u03a9, and defining the convex hull of a set S \u2286 Rd as co(S) := {\u2211nj=1 \u03b1jxj | n \u2208 N, xj \u2208 S, \u03b1j \u2265 0, \u2211nj=1 \u03b1j = 1}.",
+        "Defining an n-simplex as the convex hull of n \u2208 N points that are affinely independent, and defining a regular triangulation of \u03a9 as a finite set of d-simplices T such that (i) \u22c3\u03c4\u2208T\u03c4 = \u03a9, (ii) for all \u03c4, \u03c4' \u2208 T it holds that \u03c4 \u2229 \u03c4' = co(V(\u03c4) \u2229 V(\u03c4')).",
+        "For d \u2208 N, \u03a9 \u2286 Rd a bounded domain, and T a regular triangulation of \u03a9, where f : \u03a9 \u2192 R is cpwl with respect to T and f|\u2202\u03a9 = 0, there exists a ReLU neural network \u03a6 : \u03a9 \u2192 R realizing f, and it holds size(\u03a6) = O(|T|), width(\u03a6) = O(|T|), depth(\u03a6) = O(1), where the constants in the Landau notation depend on d and kT in (5.3.1)."
+      ]
+    },
+    {
+      "topic": "Linear Regions in ReLU Networks",
+      "sub_topics": [
+        "Limitations of ReLU neural networks are analyzed by examining the number of linear regions these functions can generate. The chapter discusses the number of linear regions these functions can generate and establishes a simple theoretical upper bound. Subsequently, it will investigate under which conditions these upper bounds are attainable.",
+        "Neural networks are based on the composition and addition of neurons. These two operations increase the possible number of pieces in a very specific way.",
+        "The proof is via induction over the depth L. Let \u03c3 be cpwl with p pieces. Then, every neural network with architecture (\u03c3; 1, d1, ..., dL, 1) has at most (p \u22c5 width(\u03a6))^L pieces.",
+        "Theorem 6.3 shows that there are limits to how many pieces can be created with a certain architecture. It is noteworthy that the effects of the depth and the width of a neural network are vastly different."
+      ]
+    },
+    {
+      "topic": "Affine Pieces for ReLU Neural Networks",
+      "sub_topics": [
+        "The chapter discusses potential shortcomings of shallow ReLU networks compared to deep ReLU networks, analyzing the number of linear regions these functions can generate.",
+        "Cpwl functions are defined with p pieces, where p is the smallest number of connected open sets such that f is an affine function for all i, and the term 'break point' is defined for d = 1.",
+        "A theorem states that for a non-affine function f \u2208 C\u00b3([a,b]), there exists a constant c > 0 such that ||g - f||L\u221e([a,b]) > cp-2 for all cpwl g with at most p pieces, implying a need for architectures allowing many pieces.",
+        "Neural networks are based on the composition and addition of neurons, and these operations increase the possible number of pieces in a specific way, described for summation and composition.",
+        "The summation of two cpwl functions f1, f2 satisfies Pieces(f1 + f2, \u03a9) \u2264 Pieces(f1, \u03a9) + Pieces(f2, \u03a9) - 1, while the composition of two functions f1, f2 satisfies Pieces(f1 \u25e6 f2, \u03a9) \u2264 Pieces(f1, Rd) \u22c5 Pieces(f2, \u03a9).",
+        "A theorem states that for a cpwl function \u03c3 with p pieces, every neural network with architecture (\u03c3; 1, d\u2081, ..., d_L, 1) has at most (p \u22c5 width(\u03a6))^L pieces.",
+        "A theorem gives a lower bound on achievable approximation rates in dependence of the depth L, stating that for ReLU networks, the approximation error is bounded by c \u22c5 (2width(\u03a6))^(-2L)."
+      ]
+    }
+  ]
+}
